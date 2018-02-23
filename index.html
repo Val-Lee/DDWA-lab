@@ -9,7 +9,7 @@
 
 <body>
     <script src="index.js"></script>
-    <form action="/planes" method="POST">
+    <form name="plane">
         <b>Model:</b>
         <br>
         <input type="text" name="model">
@@ -17,8 +17,10 @@
         <br>
         <input type="text" name="company">
         <br>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" onclick="test()" >
     </form>
+    <button onclick="test()">test</button>
+
     <table border="1">
         <caption>Air plane</caption>
         <tr>
