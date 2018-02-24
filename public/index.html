@@ -22,33 +22,25 @@
     <br>
     <input type="text" id="company" onfocus="this.value=''">
     <br>
-        <div id="war" >
-            <label>Cannons</label>
-            <br>
-            <input type="text" id="cannons" onfocus="this.value=''">
-            <br>
-        </div>
-        <div id="civil" style="display: none;">
-                <label>Flight</label>
-                <br>
-                <input type="text" id="flight" onfocus="this.value=''">
-                <br>
-            </div>
-        <button onclick="createPlane(createObject())">Save</button>
+    <div id="war">
+        <label>Cannons</label>
+        <br>
+        <input type="text" id="cannons" onfocus="this.value=''">
+        <br>
+    </div>
+    <div id="civil" style="display: none;">
+        <label>Flight</label>
+        <br>
+        <input type="text" id="flight" onfocus="this.value=''">
+        <br>
+    </div>
+    <button onclick="createPlane(createObject())">Save</button>
 
-        <table border="1">
-            <caption>Air plane</caption>
-            <tr>
-                <th>Model</th>
-                <th>Air company</th>
-                <th>Class</th>
-                <th>Number of seats</th>
-                <th>Year of production</th>
-            </tr>
-            <script lang="javascript">
-                    getPlanes();
-                </script>
-        </table>
+    <table id="table" border="1">
+    </table>
+    <script lang="javascript">
+            getPlanes();
+        </script>
 </body>
 
 </html>
