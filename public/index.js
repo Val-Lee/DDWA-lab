@@ -98,7 +98,7 @@ function fillForm(data) {
 }
 function getPlanesById(id) {
     var url = "http://localhost:3000/planes/"
-    var xhr = new XMLHttpRequest();
+    var xhr = new XMLHttpRequest(); 
     xhr.open("GET", url + id, true)
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send();

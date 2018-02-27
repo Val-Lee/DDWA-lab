@@ -1,18 +1,22 @@
 {
   "planes": [
     {
-      "model": "war",
       "company": "war",
-      "type": "war",
-      "cannons": "war",
+      "model": "war",
+      "cannons": "",
       "id": 1
     },
     {
-      "model": "civil",
       "company": "civil",
-      "type": "civil",
-      "flight": "civil",
+      "model": "civil",
+      "cannons": "",
       "id": 2
+    },
+    {
+      "company": "war1",
+      "model": "war1",
+      "cannons": "10",
+      "id": 3
     }
   ],
   "comments": [
