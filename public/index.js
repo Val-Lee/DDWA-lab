@@ -83,6 +83,7 @@ function fillForm(data) {
     if (data.type == "war") {
         document.getElementById("warPlane").click();
         document.getElementById("cannons").value = data.cannons;
+        
     }
     else if (data.type == "civil") {
         document.getElementById("civilPlane").click(); 
@@ -91,10 +92,43 @@ function fillForm(data) {
     }        
     document.getElementById("model").value = data.model;
     document.getElementById("company").value = data.company;
+    var temp = createObject();
     // override onclick save button
     //call put method
     //override back to post method when put method finished
-
+    editPlane(data.id, temp);
+}
+    function editPlane(Planeid, temp) {
+        // alert(temp.type);    
+        document.getElementById("save").innerText = "Edit"        
+        document.getElementById("save").setAttribute("onclick", "editPlane()");
+        var url = "http://localhost:3000/planes/"
+        var xhr = new XMLHttpRequest(); 
+        xhr.open("PUT", url + Planeid, true)
+        xhr.setRequestHeader("Content-Type", "application/json");
+        if(temp.type == "civil"){
+        xhr.send(JSON.stringify({
+            company: temp.type,            
+            model: temp.getModel(),
+            company: temp.getCompany(),
+            flight: temp.getFlight()
+        })
+        );
+    }
+    else{
+        xhr.send(JSON.stringify({
+            company: temp.type,            
+            model: temp.getModel(),
+            company: temp.getCompany(),
+            cannons: temp.getCannons()
+        })
+        );
+    }
+            
+    
+}
+function test() {
+    alert("asd");
 }
 function getPlanesById(id) {
     var url = "http://localhost:3000/planes/"
