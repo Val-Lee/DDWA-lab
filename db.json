@@ -35,6 +35,30 @@
       "flight": "22",
       "comfort": "business",
       "id": 4
+    },
+    {
+      "number": "2",
+      "model": "2",
+      "company": "2",
+      "seats": "2",
+      "year": "2",
+      "country": "2",
+      "type": "civil",
+      "flight": " ",
+      "comfort": "first",
+      "id": 5
+    },
+    {
+      "number": "q",
+      "model": "q",
+      "company": "q",
+      "seats": "q",
+      "year": "1",
+      "country": "q",
+      "type": "war",
+      "cannons": "q",
+      "stealth": true,
+      "id": 6
     }
   ],
   "comments": [

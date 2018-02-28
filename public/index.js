@@ -163,9 +163,9 @@ function fillForm(data) {
 
 }
 function editPlane(planeId) {
-    var validator = new Validator(plane)
-    if (!validator.isEmpty(plane)) {
-        var temp = createObject();
+    var temp = createObject();
+    var validator = new Validator(temp)
+    if (!validator.isEmpty(temp)) {
         var url = "http://localhost:3000/planes/"
         var xhr = new XMLHttpRequest();
         xhr.open("PUT", url + planeId, true)
@@ -273,34 +273,34 @@ function changeType() {
 }
 
 
-function Validator(account) {
+function Validator(plane) {
 
     var validationMessage = "<br>Field is empty";
 
-    this.isEmpty = function (account) {
+    this.isEmpty = function (plane) {
         var flag = false;
 
-        if (account.getNumber() == 0) {
+        if (plane.getNumber() == 0) {
             flag = true;
             document.getElementById("l_number").innerHTML = validationMessage;
         }
 
-        if (account.getModel() == "") {
+        if (plane.getModel() == 0) {
             flag = true;
             document.getElementById("l_model").innerHTML = validationMessage;
         }
 
-        if (account.getCompany() == "") {
+        if (plane.getCompany() == 0) {
             flag = true;
             document.getElementById("l_company").innerHTML = validationMessage;
         }
 
-        if (account.getSeats() == 0) {
+        if (plane.getSeats() == 0) {
             flag = true;
             document.getElementById("l_seats").innerHTML = validationMessage;
         }
 
-        if (account.getCountry() == "") {
+        if (plane.getCountry() == 0) {
             flag = true;
             document.getElementById("l_country").innerHTML = validationMessage;
         }
@@ -310,23 +310,23 @@ function Validator(account) {
         var cDate = null;
         
         
-        if ((cDate = new Date(account.getYear())) == 'Invalid Date') {
+        if ((cDate = new Date(plane.getYear())) == 'Invalid Date') {
             flag = true;
             document.getElementById("l_year").innerHTML = '<br>Invalid Date';
         }
         
-        if (account.getYear() == undefined) {
+        if (plane.getYear() == undefined) {
             flag = true;
             document.getElementById("l_year").innerHTML = validationMessage;
         }
         if (document.getElementById("civil").style.display == "block"){
-        if (account.getFlight() == "") {
+        if (plane.getFlight() == 0) {
             flag = true;
             document.getElementById("l_flight").innerHTML = validationMessage;
         }
     }
     if (document.getElementById("war").style.display == ""){
-        if (account.getCannons() == 0) {
+        if (plane.getCannons() == 0) {
             flag = true;
             document.getElementById("l_cannons").innerHTML = validationMessage;
         }
