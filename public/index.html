@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,67 +10,67 @@
 </head>
 
 <body>
-    <input type="radio" id='warPlane' name="type" checked onclick="changeType()">War Plane</p>
+    <input type="radio" id='warPlane' name="type" checked onclick="app.Services.changeType()">War Plane</p>
     <p>
-    <input type="radio" id='civilPlane' name="type" onclick="changeType()">Civil Plane</p>
+        <input type="radio" id='civilPlane' name="type" onclick="app.Services.changeType()">Civil Plane</p>
     </p>
     </br>
-    
+
     <label>Number</label>
-    <label id="l_number" class="validationMessage"></label>  
-    <br>  
-    <input type="text" id="number"  >
+    <label id="l_number" class="validationMessage"></label>
+    <br>
+    <input type="text" id="number">
     <br>
 
     <label>Model:</label>
-    <label id="l_model" class="validationMessage"></label>    
-    
+    <label id="l_model" class="validationMessage"></label>
+
     <br>
-    <input type="text" id="model" >
+    <input type="text" id="model">
     <br>
 
     <label>Company</label>
-    <label id="l_company" class="validationMessage"></label>  
-    <br>  
-    <input type="text" id="company" >
+    <label id="l_company" class="validationMessage"></label>
+    <br>
+    <input type="text" id="company">
     <br>
 
     <label>Number of seats</label>
-    <label id="l_seats" class="validationMessage"></label>  
-    <br>  
-    <input type="text" id="seats" >
+    <label id="l_seats" class="validationMessage"></label>
+    <br>
+    <input type="text" id="seats">
     <br>
 
     <label>Year</label>
-    <label id="l_year" class="validationMessage"></label>  
-    <br>  
-    <input type="text" id="year" >
+    <label id="l_year" class="validationMessage"></label>
+    <br>
+    <input type="text" id="year">
     <br>
 
     <label>Country</label>
-    <label id="l_country" class="validationMessage"></label>  
-    <br>  
-    <input type="text" id="country" >
+    <label id="l_country" class="validationMessage"></label>
+    <br>
+    <input type="text" id="country">
     <br>
 
     <div id="war">
         <label>Cannons</label>
-        <label id="l_cannons" class="validationMessage"></label>  
-        <br>  
-        <input type="text" id="cannons" >
+        <label id="l_cannons" class="validationMessage"></label>
+        <br>
+        <input type="text" id="cannons">
         <br>
 
         <label>Stealth</label>
-        <input type="radio" id='stealth_t' name="stealth" checked value="true" >Yes
+        <input type="radio" id='stealth_t' name="stealth" checked value="true">Yes
         <input type="radio" id='stealth_f' name="stealth" value="false">No</p>
         </p>
     </div>
 
     <div id="civil" style="display: none;">
         <label>Flight</label>
-        <label id="l_flight" class="validationMessage"></label>  
-        <br>  
-        <input type="text" id="flight" >
+        <label id="l_flight" class="validationMessage"></label>
+        <br>
+        <input type="text" id="flight">
         <br>
 
         <label>Comfort class</label>
@@ -77,16 +78,28 @@
             <option value="economy">Economy</option>
             <option value="business">Business</option>
             <option value="first">First</option>
-          </select>
+        </select>
     </div>
-    <button id="save" onclick="createPlane(createObject())">Save</button>
-    
+    <button id="save" onclick="app.Crud.createPlane(app.Crud.createObject())">Save</button>
+
 
     <table id="table" border="1">
     </table>
+    <table id="info" border="1", style="display: none">
+    </table>
+
+    <table border="1">
+        <tr>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            
+        </tr>
+    </table>
+
     <script lang="javascript">
-            getPlanes();
-        </script>
+        app.Services.getPlanes();
+    </script>
 </body>
 
 </html>
