@@ -1,22 +1,40 @@
 {
   "planes": [
     {
-      "company": "war",
-      "model": "war",
-      "cannons": "",
-      "id": 1
-    },
-    {
-      "company": "civil",
-      "model": "civil",
-      "cannons": "",
+      "type": "civil",
+      "model": "2",
+      "company": "2",
+      "flight": "2",
+      "number": "2",
+      "seats": "2",
+      "year": "2",
+      "country": "2",
+      "comfort": "first",
       "id": 2
     },
     {
-      "company": "war1",
-      "model": "war1",
-      "cannons": "10",
+      "type": "war",
+      "model": "1",
+      "company": "1",
+      "number": "1",
+      "seats": "1",
+      "year": "1",
+      "country": "1",
+      "cannons": "1",
+      "stealth": false,
       "id": 3
+    },
+    {
+      "number": "22",
+      "model": "22",
+      "company": "2",
+      "seats": "22",
+      "year": "22",
+      "country": "22",
+      "type": "civil",
+      "flight": "22",
+      "comfort": "business",
+      "id": 4
     }
   ],
   "comments": [
