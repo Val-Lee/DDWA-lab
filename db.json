@@ -18,7 +18,7 @@
       "company": "1",
       "number": "1",
       "seats": "1",
-      "year": "1",
+      "year": "-1",
       "country": "1",
       "cannons": "1",
       "stealth": false,
@@ -59,6 +59,18 @@
       "flight": " qwe",
       "comfort": "economy",
       "id": 6
+    },
+    {
+      "number": "10",
+      "model": ";lkajsd",
+      "company": "kwkja",
+      "seats": "10",
+      "year": "1992",
+      "country": "kjbl",
+      "type": "war",
+      "cannons": "10",
+      "stealth": true,
+      "id": 7
     }
   ],
   "comments": [
