@@ -200,9 +200,9 @@ app.Crud.editPlane = function (planeId) {
 }
 
 
-// this.Services = function () {
 
 app.Services.getPlanesById = function (id, flag) {
+    app.Services.showForm();
     var url = "http://localhost:3000/planes/"
     var xhr = new XMLHttpRequest();
     xhr.open("GET", url + id, true)
@@ -235,6 +235,8 @@ app.Services.getPlanes = function () {
             app.Services.fillTable(data);
         }
     }
+    document.getElementById("showAll").click();    
+    
 }
 
 app.Services.fillTable = function (data) {
@@ -266,6 +268,7 @@ app.Services.fillTable = function (data) {
 app.Services.fillInfo = function (data) {
     document.getElementById("info").style.display = "block";
     document.getElementById("table").style.display = "none";
+    document.getElementById("create").style.display = "none";    
     if (data.type == "war") {
 
         var html = "<caption>Air plane</caption>" +
@@ -379,7 +382,7 @@ app.Services.Validator = function (plane) {
 
         if (plane.getSeats() <= 20) {
             flag = true;
-            document.getElementById("l_seats").innerHTML = validationMessage;
+            document.getElementById("l_seats").innerHTML = '<br>Less than 20';
         }
 
         if (plane.getCountry() == 0) {
@@ -415,6 +418,17 @@ app.Services.Validator = function (plane) {
         }
         return flag;
     }
+}
+
+app.Services.showForm = function () {
+    document.getElementById("create").style.display = "block";
+    document.getElementById("table").style.display = "none";
+    document.getElementById("info").style.display = "none";    
+}
+app.Services.showAll = function () {
+    document.getElementById("create").style.display = "none"    ;
+    document.getElementById("table").style.display = "block";
+    document.getElementById("info").style.display = "none";        
 }
 //////////////////////////////
 //fillInfo
