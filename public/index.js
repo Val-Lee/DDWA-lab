@@ -443,6 +443,10 @@ app.Services.clearFields = function () {
     document.getElementById("cannons").value = "";
     document.getElementById("flight").value = "";    
 }
+
+app.Services.search = function (searchField) {
+  
+}
 //////////////////////////////
 //fillInfo
 //html = tr th if data.type == "war" th

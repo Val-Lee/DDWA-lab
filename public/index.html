@@ -87,7 +87,11 @@
         <button id="save" onclick="app.Crud.createPlane(app.Crud.createObject())">Save</button>
         <button id="clear" onclick="app.Services.clearFields()">Clear</button>        
     </div>
-
+    <div id="search">
+            <br>
+            <input type="text" id="searchField">
+            <button id="clear" onclick="app.Services.search(document.getElementById('searchField').value)">Search</button>  
+    </div>
     <table id="table" style="display: none">
     </table>
     <table id="info" style="display: none">
