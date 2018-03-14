@@ -1,4 +1,4 @@
-var app = {
+let app = {
     Model: {
         AirPlane: {},
         WarPlane: {},
@@ -20,114 +20,119 @@ var app = {
     }
 }
 
-app.Model.AirPlane = function (number, model, company, seats, year, country) {
-    this.number = number;
-    this.model = model;
-    this.company = company;
-    this.seats = seats;
-    this.year = year;
-    this.country = country;
-
-    this.setNumber = function (number) {
+app.Model.AirPlane = class {
+    constructor(number, model, company, seats, year, country) {
         this.number = number;
-    }
-    this.getNumber = function () {
-        return this.number;
-    }
-    this.setModel = function (model) {
         this.model = model;
-    }
-    this.getModel = function () {
-        return this.model;
-    }
-    this.setCompany = function (company) {
         this.company = company;
-    }
-    this.getCompany = function () {
-        return this.company;
-    }
-    this.setSeats = function (seats) {
         this.seats = seats;
-    }
-    this.getSeats = function () {
-        return this.seats;
-    }
-    this.setYear = function (year) {
         this.year = year;
-    }
-    this.getYear = function () {
-        return this.year;
-    }
-    this.setCountry = function (country) {
         this.country = country;
     }
-    this.getCountry = function () {
+    set Number(number) {
+        this.number = number;
+    }
+    get Number() {
+        return this.number;
+    }
+    set Model(model) {
+        this.model = model;
+    }
+    get Model() {
+        return this.model;
+    }
+    set Company(company) {
+        this.company = company;
+    }
+    get Company() {
+        return this.company;
+    }
+    set Seats(seats) {
+        this.seats = seats;
+    }
+    get Seats() {
+        return this.seats;
+    }
+    set Year(year) {
+        this.year = year;
+    }
+    get Year() {
+        return this.year;
+    }
+    set Country(country) {
+        this.country = country;
+    }
+    get Country() {
         return this.country;
     }
 
 }
 
-app.Model.WarPlane = function (cannons, stealth) {
-    app.Model.AirPlane.call(this);
-    this.type = 'war';
-    this.cannons = cannons;
-    this.stealth = stealth;
-    this.setCannons = function (cannons) {
+app.Model.WarPlane = class extends app.Model.AirPlane {
+    constructor(cannons, stealth) {
+        super(number, model, company, seats, year, country);
+        this.type = 'war';
         this.cannons = cannons;
-    }
-    this.getCannons = function () {
-        return this.cannons;
-    }
-    this.setStealth = function (stealth) {
         this.stealth = stealth;
     }
-    this.getStealth = function () {
+    set Cannons(cannons) {
+        this.cannons = cannons;
+    }
+    get Cannons() {
+        return this.cannons;
+    }
+    set Stealth(stealth) {
+        this.stealth = stealth;
+    }
+    get Stealth() {
         return this.stealth;
     }
 }
 
-app.Model.CivilPlane = function (flight, comfort) {
-    app.Model.AirPlane.call(this)
-    this.type = 'civil';
-    this.flight = flight;
-    this.comfort = comfort;
-    this.setFlight = function (flight) {
+app.Model.CivilPlane = class extends app.Model.AirPlane {
+    constructor(flight, comfort) {
+        super(number, model, company, seats, year, country)        
+        this.type = 'civil';
         this.flight = flight;
-    }
-    this.getFlight = function () {
-        return this.flight;
-    }
-    this.setComfort = function (comfort) {
         this.comfort = comfort;
     }
-    this.getComfort = function () {
+    set Flight(flight) {
+        this.flight = flight;
+    }
+    get Flight() {
+        return this.flight;
+    }
+    set Comfort(comfort) {
+        this.comfort = comfort;
+    }
+    get Comfort() {
         return this.comfort;
     }
 }
 
 app.Crud.createObject = function () {
+    let obj = null
     if (document.getElementById("warPlane").checked) {
-        var obj = new app.Model.WarPlane();
-        obj.setCannons(document.getElementById("cannons").value);
+        obj = new app.Model.WarPlane();
+        obj.Cannons = document.getElementById("cannons").value;
         if (document.getElementById("stealth_t").checked) {
-            obj.setStealth(true);
+            obj.Stealth = true;
         }
         else {
-            obj.setStealth(false);
+            obj.Stealth = false;
         }
     }
     else {
-        var obj = new app.Model.CivilPlane();
-        obj.setFlight(document.getElementById("flight").value);
-        obj.setComfort(document.getElementById("comfort").value);
-
+        obj = new app.Model.CivilPlane();
+        obj.Flight = document.getElementById("flight").value;
+        obj.Comfort = document.getElementById("comfort").value;
     }
-    obj.setNumber(document.getElementById("number").value);
-    obj.setCompany(document.getElementById("company").value);
-    obj.setSeats(document.getElementById("seats").value)
-    obj.setYear(document.getElementById("year").value)
-    obj.setCountry(document.getElementById("country").value)
-    obj.setModel(document.getElementById("model").value)
+    obj.Number = document.getElementById("number").value;
+    obj.Company = document.getElementById("company").value;
+    obj.Seats = document.getElementById("seats").value;
+    obj.Year = document.getElementById("year").value;
+    obj.Country = document.getElementById("country").value;
+    obj.Model = document.getElementById("model").value;
     return obj
 }
 
@@ -158,38 +163,38 @@ app.Crud.deletePlane = function (planeId) {
 }
 
 app.Crud.editPlane = function (planeId) {
-    var temp = app.Crud.createObject();
-    var validator = new app.Services.Validator(temp)
+    let temp = app.Crud.createObject();
+    let validator = new app.Services.Validator(temp)
     if (!validator.isEmpty(temp)) {
-        var url = "http://localhost:3000/planes/"
-        var xhr = new XMLHttpRequest();
+        let url = "http://localhost:3000/planes/"
+        let xhr = new XMLHttpRequest();
         xhr.open("PUT", url + planeId, true)
         xhr.setRequestHeader("Content-Type", "application/json");
         if (temp.type == "civil") {
             xhr.send(JSON.stringify({
                 type: temp.type,
-                model: temp.getModel(),
-                company: temp.getCompany(),
-                flight: temp.getFlight(),
-                number: temp.getNumber(),
-                seats: temp.getSeats(),
-                year: temp.getYear(),
-                country: temp.getCountry(),
-                comfort: temp.getComfort()
+                model: temp.Model,
+                company: temp.Company,
+                flight: temp.Flight,
+                number: temp.Number,
+                seats: temp.Seats,
+                year: temp.Year,
+                country: temp.Country,
+                comfort: temp.Comfort
             })
             );
         }
         else {
             xhr.send(JSON.stringify({
                 type: temp.type,
-                model: temp.getModel(),
-                company: temp.getCompany(),
-                number: temp.getNumber(),
-                seats: temp.getSeats(),
-                year: temp.getYear(),
-                country: temp.getCountry(),
-                cannons: temp.getCannons(),
-                stealth: temp.getStealth()
+                model: temp.Model,
+                company: temp.Company,
+                number: temp.Number,
+                seats: temp.Seats,
+                year: temp.Year,
+                country: temp.Country,
+                cannons: temp.Cannons,
+                stealth: temp.Stealth
             })
             );
         }
@@ -235,12 +240,12 @@ app.Services.getPlanes = function () {
             app.Services.fillTable(data);
         }
     }
-    document.getElementById("showAll").click();    
-    
+    document.getElementById("showAll").click();
+
 }
 
 app.Services.fillTable = function (data) {
-    var html = "<caption>Air plane</caption>" +
+    let html = "<caption>Air plane</caption>" +
         "<tr>" +
         "<th>Number</th>" +
         " <th>Model</th>" +
@@ -264,11 +269,11 @@ app.Services.fillTable = function (data) {
     }
     document.getElementById('table').innerHTML = html;
 }
-//////////////////////////////////////
+
 app.Services.fillInfo = function (data) {
     document.getElementById("info").style.display = "block";
     document.getElementById("table").style.display = "none";
-    document.getElementById("create").style.display = "none";    
+    document.getElementById("create").style.display = "none";
     if (data.type == "war") {
 
         var html = "<caption>Air plane</caption>" +
@@ -295,7 +300,7 @@ app.Services.fillInfo = function (data) {
 
     }
     else {
-        var html = 
+        var html =
             "<tr>" +
             "<th>Number</th>" +
             " <th>Model</th>" +
@@ -360,32 +365,32 @@ app.Services.fillForm = function (data) {
 }
 app.Services.Validator = function (plane) {
 
-    var validationMessage = "<br>Field is empty";
+    let validationMessage = "<br>Field is empty";
 
     this.isEmpty = function (plane) {
-        var flag = false;
+        let flag = false;
 
-        if (plane.getNumber() <= 0) {
+        if (plane.Number <= 0) {
             flag = true;
             document.getElementById("l_number").innerHTML = validationMessage;
         }
 
-        if (plane.getModel() == 0) {
+        if (plane.Model == 0) {
             flag = true;
             document.getElementById("l_model").innerHTML = validationMessage;
         }
 
-        if (plane.getCompany() == 0) {
+        if (plane.Company == 0) {
             flag = true;
             document.getElementById("l_company").innerHTML = validationMessage;
         }
 
-        if (plane.getSeats() <= 20) {
+        if (plane.Seats <= 20) {
             flag = true;
             document.getElementById("l_seats").innerHTML = '<br>Less than 20';
         }
 
-        if (plane.getCountry() == 0) {
+        if (plane.Country == 0) {
             flag = true;
             document.getElementById("l_country").innerHTML = validationMessage;
         }
@@ -395,23 +400,19 @@ app.Services.Validator = function (plane) {
         var cDate = null;
 
 
-        if ((cDate = new Date(plane.getYear())) == 'Invalid Date') {
+        if ((cDate = new Date(plane.Year)) == 'Invalid Date') {
             flag = true;
             document.getElementById("l_year").innerHTML = '<br>Invalid Date';
         }
 
-        if (plane.getYear() == undefined) {
-            flag = true;
-            document.getElementById("l_year").innerHTML = validationMessage;
-        }
         if (document.getElementById("civil").style.display == "block") {
-            if (plane.getFlight() == 0) {
+            if (plane.Flight == 0) {
                 flag = true;
                 document.getElementById("l_flight").innerHTML = validationMessage;
             }
         }
         if (document.getElementById("war").style.display == "") {
-            if (plane.getCannons() < 0) {
+            if (plane.Cannons < 0) {
                 flag = true;
                 document.getElementById("l_cannons").innerHTML = validationMessage;
             }
@@ -423,12 +424,24 @@ app.Services.Validator = function (plane) {
 app.Services.showForm = function () {
     document.getElementById("create").style.display = "block";
     document.getElementById("table").style.display = "none";
-    document.getElementById("info").style.display = "none";    
+    document.getElementById("info").style.display = "none";
 }
 app.Services.showAll = function () {
-    document.getElementById("create").style.display = "none"    ;
+    document.getElementById("create").style.display = "none";
     document.getElementById("table").style.display = "block";
-    document.getElementById("info").style.display = "none";        
+    document.getElementById("info").style.display = "none";
+}
+
+
+app.Services.clearFields = function () {
+    document.getElementById("number").value = "";
+    document.getElementById("model").value = "";
+    document.getElementById("company").value = "";
+    document.getElementById("seats").value = "";
+    document.getElementById("year").value = "";
+    document.getElementById("country").value = "";
+    document.getElementById("cannons").value = "";
+    document.getElementById("flight").value = "";    
 }
 //////////////////////////////
 //fillInfo
