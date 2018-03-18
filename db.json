@@ -1,18 +1,6 @@
 {
   "planes": [
     {
-      "number": "1",
-      "model": "sdedsf",
-      "company": "sdf",
-      "seats": "342",
-      "year": "2018-03-03",
-      "country": "345",
-      "type": "war",
-      "cannons": "345",
-      "stealth": false,
-      "id": 4
-    },
-    {
       "number": "234",
       "model": "234",
       "company": "234",

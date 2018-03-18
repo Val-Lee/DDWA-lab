@@ -429,11 +429,13 @@ app.Services.showForm = function () {
     document.getElementById("create").style.display = "block";
     document.getElementById("table").style.display = "none";
     document.getElementById("info").style.display = "none";
+    document.getElementById("search").style.display = "none";        
 }
 app.Services.showAll = function () {
     document.getElementById("create").style.display = "none";
     document.getElementById("table").style.display = "block";
     document.getElementById("info").style.display = "none";
+    document.getElementById("search").style.display = "block";    
     app.Services.getPlanes();
 }
 
