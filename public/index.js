@@ -140,7 +140,6 @@ app.Crud.createPlane = function (plane) {
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(JSON.stringify(plane));
         app.Services.getPlanes();
-        // document.location.reload();
     }
 }
 
@@ -237,7 +236,7 @@ app.Services.getPlanes = function () {
         }
     }
     // document.location.reload();
-    // document.getElementById("showAll").click();    
+    document.getElementById("showAll").click();    
     
 }
 

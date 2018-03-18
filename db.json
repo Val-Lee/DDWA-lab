@@ -1,6 +1,7 @@
 {
   "planes": [
     {
+<<<<<<< HEAD
       "type": "war",
       "model": "12",
       "company": "12",
@@ -71,6 +72,54 @@
       "cannons": "11",
       "stealth": true,
       "id": 9
+=======
+      "number": "1",
+      "model": "sdedsf",
+      "company": "sdf",
+      "seats": "342",
+      "year": "2018-03-03",
+      "country": "345",
+      "type": "war",
+      "cannons": "345",
+      "stealth": false,
+      "id": 2
+    },
+    {
+      "number": "1",
+      "model": "sdedsf",
+      "company": "sdf",
+      "seats": "342",
+      "year": "2018-03-03",
+      "country": "345",
+      "type": "war",
+      "cannons": "345",
+      "stealth": false,
+      "id": 3
+    },
+    {
+      "number": "1",
+      "model": "sdedsf",
+      "company": "sdf",
+      "seats": "342",
+      "year": "2018-03-03",
+      "country": "345",
+      "type": "war",
+      "cannons": "345",
+      "stealth": false,
+      "id": 4
+    },
+    {
+      "number": "234",
+      "model": "234",
+      "company": "234",
+      "seats": "234",
+      "year": "2018-03-03",
+      "country": "234",
+      "type": "war",
+      "cannons": "234",
+      "stealth": true,
+      "id": 5
+>>>>>>> 1b78131a9abf541fd3a5af76a95cbf37298a45bd
     }
   ],
   "comments": [
