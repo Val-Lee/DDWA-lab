@@ -10,9 +10,13 @@
 </head>
 
 <body>
+    <div id="workerDiv" style="position:absolute; top:10px;right:40px;">
+        <label>Object count:</label>
+        <label  id="count"></label>
+    </div>
     <button id="new" onclick="app.Services.showForm()">Create</button>
     <button id="showAll" onclick="app.Services.showAll()">Show all</button>
-    
+
     <div id="create" style="display: none;">
         <input type="radio" id='warPlane' name="type" checked onclick="app.Services.changeType()">War Plane</p>
         <p>
@@ -85,12 +89,12 @@
             </select>
         </div>
         <button id="save" onclick="app.Crud.createPlane(app.Crud.createObject())">Save</button>
-        <button id="clear" onclick="app.Services.clearFields()">Clear</button>        
+        <button id="clear" onclick="app.Services.clearFields()">Clear</button>
     </div>
     <div id="search" style="display: none">
-            <br>
-            <input type="text" id="searchField">
-            <button id="clear" onclick="app.Services.search(document.getElementById('searchField').value)">Search</button>  
+        <br>
+        <input type="text" id="searchField">
+        <button id="clear" onclick="app.Services.search(document.getElementById('searchField').value)">Search</button>
     </div>
     <table id="table" style="display: none">
     </table>
