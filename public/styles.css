@@ -1,0 +1,7 @@
+.validationMessage{
+    font-family: Arial, Helvetica, sans-serif;
+    color: red;
+}
+tr, th, td {
+    border: 1px solid black;
+}

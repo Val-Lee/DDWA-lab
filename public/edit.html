@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <input type="radio" id='warPlane' name="type" checked onclick="changeType()">War Plane</p>
+    <p>
+        <input type="radio" id='civilPlane' name="type" onclick="changeType()">Civil Plane</p>
+    </p>
+    </br>
+    <label>Model:</label>
+    <br>
+    <input type="text" id="model" onfocus="this.value=''">
+    <br>
+    <label>Company</label>
+    <br>
+    <input type="text" id="company" onfocus="this.value=''">
+    <br>
+    <div id="war">
+        <label>Cannons</label>
+        <br>
+        <input type="text" id="cannons" onfocus="this.value=''">
+        <br>
+    </div>
+    <div id="civil" style="display: none;">
+        <label>Flight</label>
+        <br>
+        <input type="text" id="flight" onfocus="this.value=''">
+        <br>
+    </div>
+    <button onclick="createPlane(createObject())">Save</button>
+
+</body>
+</html>

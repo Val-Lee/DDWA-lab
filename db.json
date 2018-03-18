@@ -1,0 +1,86 @@
+{
+  "planes": [
+    {
+      "type": "war",
+      "model": "12",
+      "company": "12",
+      "number": "123",
+      "seats": "322",
+      "year": "1992",
+      "country": "fdf",
+      "cannons": "12",
+      "stealth": true,
+      "id": 4
+    },
+    {
+      "number": "1",
+      "model": "1d",
+      "company": "dfsf",
+      "seats": "123",
+      "year": "1999",
+      "country": "sdf",
+      "type": "war",
+      "cannons": "12",
+      "stealth": true,
+      "id": 5
+    },
+    {
+      "number": "1",
+      "model": "1",
+      "company": "1",
+      "seats": "111",
+      "year": "1995",
+      "country": "mdm",
+      "type": "war",
+      "cannons": "12",
+      "stealth": true,
+      "id": 6
+    },
+    {
+      "number": "99",
+      "model": "99",
+      "company": "99",
+      "seats": "99",
+      "year": "1999",
+      "country": "99",
+      "type": "war",
+      "cannons": "99",
+      "stealth": true,
+      "id": 7
+    },
+    {
+      "number": "123",
+      "model": "123",
+      "company": "123",
+      "seats": "123",
+      "year": "1999",
+      "country": "123",
+      "type": "war",
+      "cannons": "123",
+      "stealth": true,
+      "id": 8
+    },
+    {
+      "type": "war",
+      "model": "aaaa",
+      "company": "llsdkf",
+      "number": "1",
+      "seats": "22",
+      "year": "2000",
+      "country": "ldkfj",
+      "cannons": "11",
+      "stealth": true,
+      "id": 9
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
