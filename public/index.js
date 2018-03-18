@@ -1,5 +1,4 @@
-let app = (function () {
-    return {
+let app = {
     Model: {
         AirPlane: {},
         WarPlane: {},
@@ -19,7 +18,7 @@ let app = (function () {
         changeType: {},
         Validator: {}
     }
-}})();
+}
 
 app.Model.AirPlane = class {
     constructor(number, model, company, seats, year, country) {
