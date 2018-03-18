@@ -1,19 +1,6 @@
 {
   "planes": [
     {
-
-      "type": "war",
-      "model": "12",
-      "company": "12",
-      "number": "123",
-      "seats": "322",
-      "year": "1992",
-      "country": "fdf",
-      "cannons": "12",
-      "stealth": true,
-      "id": 4
-    },
-    {
       "number": "1",
       "model": "1d",
       "company": "dfsf",
