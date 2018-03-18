@@ -1,3 +1,4 @@
+
 let app = {
     Model: {
         AirPlane: {},
@@ -88,10 +89,11 @@ app.Model.WarPlane = class extends app.Model.AirPlane {
         return this.stealth;
     }
 }
-
+const url = "http://localhost:3000/planes/"
+const xhr = new XMLHttpRequest();
 app.Model.CivilPlane = class extends app.Model.AirPlane {
     constructor(flight, comfort) {
-        super(number, model, company, seats, year, country)        
+        super(number, model, company, seats, year, country)
         this.type = 'civil';
         this.flight = flight;
         this.comfort = comfort;
@@ -137,24 +139,25 @@ app.Crud.createObject = function () {
 }
 
 app.Crud.createPlane = function (plane) {
-    var validator = new app.Services.Validator(plane)
+    let validator = new app.Services.Validator(plane)
     if (!validator.isEmpty(plane)) {
-        var url = "http://localhost:3000/planes"
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", url, true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.send(JSON.stringify(plane));
-        app.Services.getPlanes();
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json,',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(plane)
+    }).then(plane => plane.json())
+    app.Services.getPlanes();
     }
 }
 
 app.Crud.deletePlane = function (planeId) {
-    var url = "http://localhost:3000/planes/"
-    var xhr = new XMLHttpRequest();
     if (confirm("Are you sure?")) {
-        xhr.open("DELETE", url + planeId, true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.send();
+        let options = { method: 'Delete' };
+        fetch(url + planeId, options)
+        .then(response => response.json());
         document.location.reload();
     }
     else {
@@ -166,8 +169,6 @@ app.Crud.editPlane = function (planeId) {
     let temp = app.Crud.createObject();
     let validator = new app.Services.Validator(temp)
     if (!validator.isEmpty(temp)) {
-        let url = "http://localhost:3000/planes/"
-        let xhr = new XMLHttpRequest();
         xhr.open("PUT", url + planeId, true)
         xhr.setRequestHeader("Content-Type", "application/json");
         if (temp.type == "civil") {
@@ -208,45 +209,45 @@ app.Crud.editPlane = function (planeId) {
 
 app.Services.getPlanesById = function (id, flag) {
     app.Services.showForm();
-    var url = "http://localhost:3000/planes/"
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", url + id, true)
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send();
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState != 4) return;
-        if (xhr.status == 200) {
-            var data = JSON.parse(xhr.responseText);
-            if (flag) {
-                app.Services.fillForm(data);
+    fetch(url + id)
+        .then(function (response) {
+            if (response.status !== 200) {
+                console.log('Status code: ' +
+                    response.status);
+                return;
             }
-            else {
-                app.Services.fillInfo(data);
-            }
+            response.json().then(function (data) {
+                if (flag) {
+                    app.Services.fillForm(data);
+                }
+                else {
+                    app.Services.fillInfo(data);
+                }
+            });
         }
-    }
+        )
 }
-
-app.Services.getPlanes = function () {
-    var url = "http://localhost:3000/planes"
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", url, true)
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send();
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState != 4) return;
-        if (xhr.status == 200) {
-            var data = JSON.parse(xhr.responseText);
-            app.Services.fillTable(data);
+this.planes = [];
+app.Services.getPlanes = function () {  
+    fetch(url)
+        .then(function (response) {
+            if (response.status !== 200) {
+                console.log('Status code: ' +
+                    response.status);
+                return;
+            }
+            response.json().then(function (data) {
+                planes = [];
+                planes=data;
+                app.Services.fillTable(data);
+            });
         }
-    }
-    // document.location.reload();
-    document.getElementById("showAll").click();    
-    
+        )
+    document.getElementById("showAll").click();
 }
 
 app.Services.fillTable = function (data) {
-    let html = "<caption>Air plane</caption>" +
+    var html = "<caption>Air plane</caption>" +
         "<tr>" +
         "<th>Number</th>" +
         " <th>Model</th>" +
@@ -360,7 +361,7 @@ app.Services.fillForm = function (data) {
     document.getElementById("seats").value = data.seats;
     document.getElementById("year").value = data.year;
     document.getElementById("country").value = data.country;
-    document.getElementById("save").innerText = "Edit"; 
+    document.getElementById("save").innerText = "Edit";
     document.getElementById("save").setAttribute("onclick", "app.Crud.editPlane(" + data.id + ")");
 
 }
@@ -374,51 +375,51 @@ app.Services.Validator = function (plane) {
         if (plane.Number <= 0) {
             flag = true;
             document.getElementById("l_number").innerHTML = validationMessage;
-        } else { document.getElementById("l_number").innerHTML = "";}
-        var regexModel = /[A-Za-z0-99999]+/
-        if (!regexModel.test(plane.getModel())) {            
+        } else { document.getElementById("l_number").innerHTML = ""; }
+        const regexModel = /[A-Za-z0-99999]+/
+        if (!regexModel.test(plane.Model)) {
             flag = true;
             document.getElementById("l_model").innerHTML = validationMessage;
         }
-        else { document.getElementById("l_model").innerHTML = "";}
+        else { document.getElementById("l_model").innerHTML = ""; }
 
-        if (!regexModel.test(plane.getCompany())) {
+        if (!regexModel.test(plane.Company)) {
             flag = true;
             document.getElementById("l_company").innerHTML = validationMessage;
         }
-        else { document.getElementById("l_company").innerHTML = "";}
+        else { document.getElementById("l_company").innerHTML = ""; }
 
         if (plane.Seats <= 20) {
             flag = true;
             document.getElementById("l_seats").innerHTML = '<br>Less than 20';
         }
-        else { document.getElementById("l_seats").innerHTML = "";}
-        var regex = /[A-Za-z]+/
-        if (!regex.test(plane.getCountry())) {
+        else { document.getElementById("l_seats").innerHTML = ""; }
+        const regex = /[A-Za-z]+/
+        if (!regex.test(plane.Country)) {
             flag = true;
             document.getElementById("l_country").innerHTML = '<br>Invalid format';
         }
-        else { document.getElementById("l_country").innerHTML = "";}
+        else { document.getElementById("l_country").innerHTML = ""; }
 
-        if ( plane.getYear() > 2018 || plane.getYear() < 1850 ) {
-            
+        if (plane.Year > 2018 || plane.Year < 1850) {
+
             flag = true;
             document.getElementById("l_year").innerHTML = '<br>Invalid Date';
         }
-        else { document.getElementById("l_year").innerHTML = "";}
+        else { document.getElementById("l_year").innerHTML = ""; }
         if (document.getElementById("civil").style.display == "block") {
             if (plane.Flight == 0) {
                 flag = true;
                 document.getElementById("l_flight").innerHTML = validationMessage;
             }
-            else { document.getElementById("l_flight").innerHTML = "";}
+            else { document.getElementById("l_flight").innerHTML = ""; }
         }
         if (document.getElementById("war").style.display == "block") {
-            if (plane.getCannons() < 0 || plane.getCannons() == "") {
+            if (plane.Cannons < 0 || plane.Cannons == "") {
                 flag = true;
                 document.getElementById("l_cannons").innerHTML = validationMessage;
             }
-            else { document.getElementById("l_cannons").innerHTML = "";}
+            else { document.getElementById("l_cannons").innerHTML = ""; }
         }
         return flag;
     }
@@ -433,6 +434,7 @@ app.Services.showAll = function () {
     document.getElementById("create").style.display = "none";
     document.getElementById("table").style.display = "block";
     document.getElementById("info").style.display = "none";
+    app.Services.getPlanes();
 }
 
 
@@ -444,13 +446,29 @@ app.Services.clearFields = function () {
     document.getElementById("year").value = "";
     document.getElementById("country").value = "";
     document.getElementById("cannons").value = "";
-    document.getElementById("flight").value = "";    
+    document.getElementById("flight").value = "";
+}
+app.Services.planesGenerator = function* () {
+    for (let plane of planes) {
+        yield plane;
+    }
+}
+app.Services.search = function (searchField) {
+        const searchText = document.getElementById('searchField').value || '';
+        const generator = app.Services.planesGenerator();
+        let item = generator.next();
+        while (!item.done) {
+            if (item.value.model.includes(searchText) || item.value.country.includes(searchText) ||
+                item.value.company.includes(searchText) || searchText == '') {
+                document.getElementById(item.value.id).hidden = false;
+            } else {
+                document.getElementById(item.value.id).hidden = true;
+            }
+            item = generator.next();
+        } 
 }
 
-app.Services.search = function (searchField) {
-  
+function spreadExample() {
+    let [first, second, ...spread] = "first second hello".split(" ");
+    alert(spread);
 }
-//////////////////////////////
-//fillInfo
-//html = tr th if data.type == "war" th
-//else 
