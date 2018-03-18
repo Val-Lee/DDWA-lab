@@ -155,7 +155,7 @@ app.Crud.deletePlane = function (planeId) {
         xhr.open("DELETE", url + planeId, true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send();
-        location.reload();
+        document.location.reload();
     }
     else {
         alert("Delete aborted!");
@@ -240,8 +240,9 @@ app.Services.getPlanes = function () {
             app.Services.fillTable(data);
         }
     }
-    document.getElementById("showAll").click();
-
+    // document.location.reload();
+    document.getElementById("showAll").click();    
+    
 }
 
 app.Services.fillTable = function (data) {
@@ -359,7 +360,7 @@ app.Services.fillForm = function (data) {
     document.getElementById("seats").value = data.seats;
     document.getElementById("year").value = data.year;
     document.getElementById("country").value = data.country;
-    document.getElementById("save").innerText = "Edit";
+    document.getElementById("save").innerText = "Edit"; 
     document.getElementById("save").setAttribute("onclick", "app.Crud.editPlane(" + data.id + ")");
 
 }
@@ -373,49 +374,51 @@ app.Services.Validator = function (plane) {
         if (plane.Number <= 0) {
             flag = true;
             document.getElementById("l_number").innerHTML = validationMessage;
-        }
-
-        if (plane.Model == 0) {
+        } else { document.getElementById("l_number").innerHTML = "";}
+        var regexModel = /[A-Za-z0-99999]+/
+        if (!regexModel.test(plane.getModel())) {            
             flag = true;
             document.getElementById("l_model").innerHTML = validationMessage;
         }
+        else { document.getElementById("l_model").innerHTML = "";}
 
-        if (plane.Company == 0) {
+        if (!regexModel.test(plane.getCompany())) {
             flag = true;
             document.getElementById("l_company").innerHTML = validationMessage;
         }
+        else { document.getElementById("l_company").innerHTML = "";}
 
         if (plane.Seats <= 20) {
             flag = true;
             document.getElementById("l_seats").innerHTML = '<br>Less than 20';
         }
-
-        if (plane.Country == 0) {
+        else { document.getElementById("l_seats").innerHTML = "";}
+        var regex = /[A-Za-z]+/
+        if (!regex.test(plane.getCountry())) {
             flag = true;
-            document.getElementById("l_country").innerHTML = validationMessage;
+            document.getElementById("l_country").innerHTML = '<br>Invalid format';
         }
+        else { document.getElementById("l_country").innerHTML = "";}
 
-
-
-        var cDate = null;
-
-
-        if ((cDate = new Date(plane.Year)) == 'Invalid Date') {
+        if ( plane.getYear() > 2018 || plane.getYear() < 1850 ) {
+            
             flag = true;
             document.getElementById("l_year").innerHTML = '<br>Invalid Date';
         }
-
+        else { document.getElementById("l_year").innerHTML = "";}
         if (document.getElementById("civil").style.display == "block") {
             if (plane.Flight == 0) {
                 flag = true;
                 document.getElementById("l_flight").innerHTML = validationMessage;
             }
+            else { document.getElementById("l_flight").innerHTML = "";}
         }
-        if (document.getElementById("war").style.display == "") {
-            if (plane.Cannons < 0) {
+        if (document.getElementById("war").style.display == "block") {
+            if (plane.getCannons() < 0 || plane.getCannons() == "") {
                 flag = true;
                 document.getElementById("l_cannons").innerHTML = validationMessage;
             }
+            else { document.getElementById("l_cannons").innerHTML = "";}
         }
         return flag;
     }

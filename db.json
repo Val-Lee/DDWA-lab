@@ -1,16 +1,65 @@
 {
   "planes": [
     {
+
       "type": "war",
-      "model": "sdedsf",
-      "company": "sdf",
-      "number": "991",
-      "seats": "342",
-      "year": "2018-03-03",
-      "country": "345",
-      "cannons": "345",
-      "stealth": false,
-      "id": 3
+      "model": "12",
+      "company": "12",
+      "number": "123",
+      "seats": "322",
+      "year": "1992",
+      "country": "fdf",
+      "cannons": "12",
+      "stealth": true,
+      "id": 4
+    },
+    {
+      "number": "1",
+      "model": "1d",
+      "company": "dfsf",
+      "seats": "123",
+      "year": "1999",
+      "country": "sdf",
+      "type": "war",
+      "cannons": "12",
+      "stealth": true,
+      "id": 5
+    },
+    {
+      "number": "1",
+      "model": "1",
+      "company": "1",
+      "seats": "111",
+      "year": "1995",
+      "country": "mdm",
+      "type": "war",
+      "cannons": "12",
+      "stealth": true,
+      "id": 6
+    },
+    {
+      "number": "99",
+      "model": "99",
+      "company": "99",
+      "seats": "99",
+      "year": "1999",
+      "country": "99",
+      "type": "war",
+      "cannons": "99",
+      "stealth": true,
+      "id": 7
+    },
+    {
+      "number": "123",
+      "model": "123",
+      "company": "123",
+      "seats": "123",
+      "year": "1999",
+      "country": "123",
+      "type": "war",
+      "cannons": "123",
+      "stealth": true,
+      "id": 8
     },
     {
       "number": "1",
@@ -35,30 +84,6 @@
       "cannons": "234",
       "stealth": true,
       "id": 5
-    },
-    {
-      "number": "789",
-      "model": "789",
-      "company": "789",
-      "seats": "789",
-      "year": "2018-03-01",
-      "country": "789",
-      "type": "war",
-      "cannons": "789",
-      "stealth": true,
-      "id": 6
-    },
-    {
-      "number": "111",
-      "model": "111",
-      "company": "111",
-      "seats": "111",
-      "year": "2018-03-02",
-      "country": "111",
-      "type": "war",
-      "cannons": "111",
-      "stealth": true,
-      "id": 7
     }
   ],
   "comments": [
