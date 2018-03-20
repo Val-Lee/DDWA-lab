@@ -1,13 +1,13 @@
 {
   "planes": [
     {
-      "number": "2",
-      "model": "22",
-      "company": "22",
+      "type": "war",
+      "model": "123qwe",
+      "company": "asd",
+      "number": "213",
       "seats": "222",
       "year": "1992",
       "country": "sad",
-      "type": "war",
       "cannons": "22",
       "stealth": true,
       "id": 11
@@ -23,6 +23,18 @@
       "cannons": "22",
       "stealth": true,
       "id": 12
+    },
+    {
+      "number": "213",
+      "model": "qwe",
+      "company": "qwe",
+      "seats": "123",
+      "year": "1992",
+      "country": "asdf",
+      "type": "war",
+      "cannons": "11",
+      "stealth": true,
+      "id": 13
     }
   ],
   "comments": [

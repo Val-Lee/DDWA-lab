@@ -138,7 +138,7 @@ app.Crud.createObject = function () {
     return obj
 }
 
-app.Crud.createPlane = function (plane) {
+app.Crud.createPlane = async function (plane) {
     let validator = new app.Services.Validator(plane)
     if (!validator.isEmpty(plane)) {
     fetch(url, {
@@ -153,7 +153,7 @@ app.Crud.createPlane = function (plane) {
     }
 }
 
-app.Crud.deletePlane = function (planeId) {
+app.Crud.deletePlane = async function (planeId) {
     if (confirm("Are you sure?")) {
         let options = { method: 'Delete' };
         fetch(url + planeId, options)
@@ -200,14 +200,14 @@ app.Crud.editPlane = function (planeId) {
             );
         }
     }
-    app.Services.getPlanes();
+    // app.Services.getPlanes();
     document.getElementById("save").innerText = "Save";
     document.getElementById("save").setAttribute("onclick", "createPlane(createObject())");
 }
 
 
 
-app.Services.getPlanesById = function (id, flag) {
+app.Services.getPlanesById = async function (id, flag) {
     app.Services.showForm();
     fetch(url + id)
         .then(function (response) {
@@ -228,7 +228,7 @@ app.Services.getPlanesById = function (id, flag) {
         )
 }
 this.planes = [];
-app.Services.getPlanes = function () {  
+app.Services.getPlanes = async function () {  
     fetch(url)
         .then(function (response) {
             if (response.status !== 200) {
